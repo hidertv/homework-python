@@ -20,9 +20,10 @@ jobs:
         python-version: "3.10"
               
     - name: pip install
-      run: pip install -r requirements.txt
+      run: pip install -r requirements.txt &
 
     - run: python db.py -a
     - run: timeout 30s python app.py --host localhost --port 5000 &
-    - run: curl localhost:5000/api/products
+    - run: curl localhost:5000/api/products > test
+    - run: cat ./test
       
