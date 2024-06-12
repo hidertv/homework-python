@@ -37,5 +37,6 @@ jobs:
       run: pip install -r requirements.txt
 
     - run: python db.py -a
-    - run: python app.py --host localhost --port 5000
+    - run: timeout 30s python app.py --host localhost --port 5000 &
+    - run: curl localhost:5000
       
